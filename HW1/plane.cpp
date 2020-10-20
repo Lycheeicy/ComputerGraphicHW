@@ -31,7 +31,7 @@ Intersection(const Ray& ray, std::vector<Hit>& hits) const
         else {
             if (dot(eo, ray.direction) > 0) {
                 x = -dot(eo, n) / n.magnitude();
-                l = x / (-(dot(ray.direction, n) / (ray.direction.magnitude() * n.magnitude()));
+                l = x / (-(dot(ray.direction, n) / (ray.direction.magnitude() * n.magnitude())));
                 startp = ray.endpoint + ray.direction * l;
                 hit.location = startp;
                 hit.object = this;
@@ -43,7 +43,7 @@ Intersection(const Ray& ray, std::vector<Hit>& hits) const
             }
             else if (dot(eo, ray.direction) == 0) {
                 x = d;
-                l=x / (-(dot(ray.direction, n) / (ray.direction.magnitude() * n.magnitude()));
+                l=x / (-(dot(ray.direction, n) / (ray.direction.magnitude() * n.magnitude())));
                 startp = ray.endpoint + ray.direction * l;
                 hit.location = startp;
                 hit.object = this;
@@ -55,7 +55,7 @@ Intersection(const Ray& ray, std::vector<Hit>& hits) const
             }
             else {
                 x = d * (-dot(n, eo) / (n.magnitude() * eo.magnitude()));
-                l = x / (-(dot(ray.direction, n) / (ray.direction.magnitude() * n.magnitude()));
+                l = x / (-(dot(ray.direction, n) / (ray.direction.magnitude() * n.magnitude())));
                 startp = ray.endpoint + ray.direction * l;
                 hit.location = startp;
                 hit.object = this;
@@ -95,7 +95,7 @@ Intersection(const Ray& ray, std::vector<Hit>& hits) const
         else {
             if (dot(eo, ray.direction) > 0) {
                 x = d * (dot(eo, n) / (eo.magnitude() * n.magnitude()));
-                l = x / ((dot(ray.direction, n) / (ray.direction.magnitude() * n.magnitude()));
+                l = x / ((dot(ray.direction, n) / (ray.direction.magnitude() * n.magnitude())));
                 startp = ray.endpoint;
                 hit.location = startp;
                 hit.object = this;
@@ -113,7 +113,7 @@ Intersection(const Ray& ray, std::vector<Hit>& hits) const
             }
             else if (dot(eo, ray.direction) == 0) {
                 x = d;
-                l = x / ((dot(ray.direction, n) / (ray.direction.magnitude() * n.magnitude()));
+                l = x / ((dot(ray.direction, n) / (ray.direction.magnitude() * n.magnitude())));
                 startp = ray.endpoint;
                 hit.location = startp;
                 hit.object = this;
@@ -131,7 +131,7 @@ Intersection(const Ray& ray, std::vector<Hit>& hits) const
             }
             else {
                 x = d * (dot(eo, n) / (eo.magnitude() * n.magnitude()));
-                l = x / ((dot(ray.direction, n) / (ray.direction.magnitude() * n.magnitude()));
+                l = x / ((dot(ray.direction, n) / (ray.direction.magnitude() * n.magnitude())));
                 startp = ray.endpoint;
                 hit.location = startp;
                 hit.object = this;
