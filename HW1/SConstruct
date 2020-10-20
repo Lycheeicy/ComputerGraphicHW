@@ -1,4 +1,4 @@
-`    import os
+import os
 env = Environment(ENV = os.environ)
 
 env.Append(LIBS=["png","gsl","gslcblas"])
