@@ -35,7 +35,7 @@ Object* Render_World::Closest_Intersection(const Ray& ray, Hit& hit)
         if(vec[0].t<=min_t&&vec[0].t>small_t){
             hit = vec[0];
             min_t = vec[0].t;
-            result = hit.object;
+            result =(Object *) hit.object;
         }
         return result;
 
