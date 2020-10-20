@@ -1,0 +1,13 @@
+size 640 480
+color red 1 0 0
+color white 1 1 1
+phong_shader red_shader red red white 50
+sphere A -.01 0 0 1 -
+transform - A red_shader T 0 .5 0
+sphere - .01 .5 0 1 red_shader
+point_light -2 7 3 white 100
+point_light 3 5 -3 white 100
+ambient_light white .3
+enable_shadows 1
+recursion_depth_limit 10
+camera 0 1 4 0 0 0 0 1 0 70
