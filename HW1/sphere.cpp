@@ -22,7 +22,9 @@ void Sphere::Intersection(const Ray& ray, std::vector<Hit>& hits) const
         hit.object = this;
         hit.ray_exiting = false;
         hit.t = 0;
-        hit.rotation = NULL;    //not sure
+        mat3 rm;
+        rm.make_id();
+        hit.rotation = rm;    //not sure
         if (dot(eo, ray.direction) > 0) {
             cos = dot(eo, ray.direction) / eo.magnitude() / ray.direction.magnitude();
             d = eo.magnitude();
