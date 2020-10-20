@@ -52,7 +52,7 @@ void Sphere::Intersection(const Ray& ray, std::vector<Hit>& hits) const
         hit2.location = endp;
         hit2.object = this;
         hit2.ray_exiting = true;
-        mat3 rm;
+        //mat3 rm;
         rm.make_id();
         hit2.rotation = rm;   //not sure
         hits[0] = hit;
