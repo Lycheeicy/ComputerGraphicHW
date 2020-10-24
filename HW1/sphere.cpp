@@ -4,7 +4,9 @@
 // Determine if the ray intersects with the sphere
 void Sphere::Intersection(const Ray& ray, std::vector<Hit>& hits) const
 {
-    TODO;
+    //std::cout << "hereeeee" << std::endl;
+    //return;
+    //TODO;
     double x;
     double y;
     double cos;
@@ -18,6 +20,8 @@ void Sphere::Intersection(const Ray& ray, std::vector<Hit>& hits) const
     Hit hit;
     Hit hit2;
     if ((ray.endpoint - this->center).magnitude() <= this->radius) {
+        //inside
+        //std::cout << "Inside sphere" << std::endl;
         hit.location = ray.endpoint;
         hit.object = this;
         hit.ray_exiting = false;
@@ -55,18 +59,34 @@ void Sphere::Intersection(const Ray& ray, std::vector<Hit>& hits) const
         //mat3 rm;
         rm.make_id();
         hit2.rotation = rm;   //not sure
-        hits[0] = hit;
-        hits[1] = hit2;
+        std::vector<Hit> h = { hit ,hit2};
+        hits = h;
+        //std::cout << "here3" << std::endl;
         return;
     }
     else {
+        //outside
+        //std::cout << "Outside sphere" << std::endl;
         if (dot(eo, ray.direction) > 0) {
             d = eo.magnitude();
             cos = dot(eo, ray.direction) / eo.magnitude() / ray.direction.magnitude();
             x = d * cos;
             y = sqrt(d * d - x * x);
             l = sqrt(this->radius * this->radius - y * y);
-            if (y > this->radius)  return;
+            if (y > this->radius) {
+                /*std::cout << "d is "<<d << std::endl;
+                std::cout << "cos is "<<cos << std::endl;
+                std::cout << "x is " <<x<< std::endl;
+                std::cout << "y is " << y << std::endl;
+                std::cout << "r is "<<this->radius << std::endl;
+                std::cout << "l is "<<l << std::endl;
+                std::cout << "e is "<<ray.endpoint << std::endl;
+                std::cout << "ray direction is "<<ray.direction << std::endl;
+                std::cout << "o is " << this->center << std::endl;
+                std::cout << "here" << std::endl;*/
+                return;
+            }
+                
             else if (y == this->radius) {
                 endp = ray.endpoint + ray.direction * x;
                 hit.location = endp;
@@ -82,8 +102,9 @@ void Sphere::Intersection(const Ray& ray, std::vector<Hit>& hits) const
                 rm.make_id();
                 hit2.rotation = rm;
                 hit2.t = x;
-                hits[0] = hit;
-                hits[1] = hit2;
+                std::vector<Hit> h = { hit ,hit2};
+                hits = h;
+                std::cout << "here2" << std::endl;
                 return;
             }
             else if (y < this->radius) {
@@ -101,11 +122,14 @@ void Sphere::Intersection(const Ray& ray, std::vector<Hit>& hits) const
                 hit2.ray_exiting = true;
                 hit2.rotation = rm;
                 hit2.t = x+l;
-                hits[0] = hit;
-                hits[1] = hit2;
+                std::vector<Hit> h = { hit,hit2 };
+                hits = h;
+                //std::cout << "here1" << std::endl;
+                return;
             }
         }
         else {
+            //std::cout << "here" << std::endl;
             return;
         }
     }
@@ -114,14 +138,24 @@ void Sphere::Intersection(const Ray& ray, std::vector<Hit>& hits) const
 vec3 Sphere::Normal(const vec3& point) const
 {
     vec3 normal;
-    TODO; // compute the normal direction
+    //TODO; // compute the normal direction
+    vec3 p = point - this->center;
+    p = p / p.magnitude();
+    normal = p;
+    //std::cout << p << std::endl;
     return normal;
 }
 
 // set this->bounding_box so that it contains the sphere as tightly as possible.
 void Sphere::Update_Bounding_Box()
 {
-    TODO;
+    //TODO;
     infinite_box=false;
+    vec3 c = this->center;
+    double r = this->radius;
+    vec3 up(r, r, r);
+    vec3 low(-r, -r, -r);
+    this->bounding_box.hi = c + up;
+    this->bounding_box.lo = c + low;
 }
 

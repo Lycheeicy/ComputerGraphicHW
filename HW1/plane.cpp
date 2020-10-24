@@ -8,7 +8,7 @@
 void Plane::
 Intersection(const Ray& ray, std::vector<Hit>& hits) const
 {
-    TODO;
+    //TODO;
     vec3 oe = ray.endpoint - this->x1;
     vec3 eo = this->x1 - ray.endpoint;
     vec3 n = this->normal;
@@ -65,7 +65,13 @@ Intersection(const Ray& ray, std::vector<Hit>& hits) const
                 hit.rotation = rm;    //not sure
                 hit.t = l;
             }
-            hits[0] = hit;
+            //Hit h=hit;
+            //hits=h;
+
+            //hits = new std::vector<Hit>[1];
+            std::vector<Hit> h = {hit};
+            hits = h;
+            //hits[0] = hit;
             return;
         }
     }
@@ -77,7 +83,8 @@ Intersection(const Ray& ray, std::vector<Hit>& hits) const
         rm.make_id();
         hit.rotation = rm;
         hit.t = 0;
-        hits[0] = hit;
+        std::vector<Hit> h = { hit };
+        hits = h;
         return;
     }
     else {
@@ -89,7 +96,8 @@ Intersection(const Ray& ray, std::vector<Hit>& hits) const
             rm.make_id();
             hit.rotation = rm;
             hit.t = 0;
-            hits[0] = hit;
+            std::vector<Hit> h = { hit };
+            hits = h;
             return;
         }
         else {
@@ -147,8 +155,8 @@ Intersection(const Ray& ray, std::vector<Hit>& hits) const
                 hit2.rotation = rm;    //not sure
                 hit2.t = l;
             }
-            hits[0] = hit;
-            hits[1] = hit2;
+            std::vector<Hit> h = { hit,hit2 };
+            hits = h;
             return;
         }
     }

@@ -24,29 +24,38 @@ Render_World::~Render_World()
 // Any intersection with t<=small_t should be ignored.
 Object* Render_World::Closest_Intersection(const Ray& ray, Hit& hit)
 {
-    TODO;
+    //TODO;
     Object* result=NULL;
+    //return result;
     double min_t = std::numeric_limits<double>::max();
-    for (int i = 0; i < objects.size(); i++) {
+    //std::cout << objects.size()<< std::endl;
+    for (int i = 0; i < objects.size(); i++) {       
         Object* var = objects[i];
         std::vector<Hit> vec;
         var->Intersection(ray, vec);
+        //std::cout << vec.size() << std::endl;
+        //std::cout <<"hit1 t "<< vec[0].t<< std::endl;
+        //std::cout << "hit1 exiting "<<vec[0].ray_exiting<< std::endl;
+        //std::cout << "hit2 t " << vec[1].t << std::endl;
+        //std::cout << "hit2 exiting " << vec[1].ray_exiting << std::endl;
         if (vec.size() == 0)  continue;
         if(vec[0].t<=min_t&&vec[0].t>small_t){
             hit = vec[0];
             min_t = vec[0].t;
             result =(Object *) hit.object;
+            //std::cout <<min_t<< std::endl;
         }
-        return result;
+        //return result;
 
     }
-    return 0;
+    //std::cout << (*result). << std::endl;
+    return result;
 }
 
 // set up the initial view ray and call
 void Render_World::Render_Pixel(const ivec2& pixel_index)
 {
-    TODO; // set up the initial view ray here
+    //TODO; // set up the initial view ray here
     Ray ray;
     ray.endpoint = this->camera.position;
     ray.direction = (this->camera.World_Position(pixel_index) - ray.endpoint).normalized();
@@ -66,7 +75,8 @@ void Render_World::Render()
 vec3 Render_World::Cast_Ray(const Ray& ray,int recursion_depth)
 {
     vec3 color;
-    TODO; // determine the color here
+    //return color;
+    //TODO; // determine the color here
     Hit hit;
     Object* object;
     object=Closest_Intersection(ray, hit);
@@ -75,5 +85,7 @@ vec3 Render_World::Cast_Ray(const Ray& ray,int recursion_depth)
         return background_shader->Shade_Surface(ray,vec,vec,recursion_depth);
     }
     color=object->material_shader->Shade_Surface(ray, hit.location, hit.object->Normal(hit.location), recursion_depth);
+    //std::cout << hit.location << std::endl;
+    //std::cout << hit.object->Normal(hit.location) << std::endl;
     return color;
 }
