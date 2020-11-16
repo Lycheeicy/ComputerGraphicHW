@@ -77,8 +77,14 @@ void clip_triangle(driver_state& state, const data_geometry& v0,
     std::cout << "leave clip_triangle" << std::endl;
 }
 
-float areaCal(int ax,int ay,int bx, int by,int cx,int cy) {
-    float area = 0.5 * (((float)bx * (float)cy - (float)cx * (float)by) + ((float)cx * (float)ay - (float)ax * (float)cy) + ((float)ax * (float)by - (float)bx * (float)ay));
+float areaCal(int axi,int ayi,int bxi, int byi,int cxi,int cyi) {
+    float ax = axi;
+    float ay = ayi;
+    float bx = bxi;
+    float by = byi;
+    float cx = cxi;
+    float cy = cyi;
+    float area = 0.5 * ((float)(bx * (float)cy - (float)cx * by) + (float)(cx * ay - (float)ax * cy) + (float)(ax * by - (float)bx * ay));
     return area;
 }
 
