@@ -78,7 +78,7 @@ void clip_triangle(driver_state& state, const data_geometry& v0,
 }
 
 float areaCal(int ax,int ay,int bx, int by,int cx,int cy) {
-    float area = 0.5 * ((bx * cy - cx * by) + (cx * ay - ax * cy) + (ax * by - bx * ay));
+    float area = 0.5 * (((float)bx * (float)cy - (float)cx * (float)by) + ((float)cx * (float)ay - (float)ax * (float)cy) + ((float)ax * (float)by - (float)bx * (float)ay));
     return area;
 }
 
@@ -112,6 +112,11 @@ void rasterize_triangle(driver_state& state, const data_geometry& v0,
             state.vertex_data[i * state.floats_per_vertex + (state.floats_per_vertex - 3)] = 255;
             state.vertex_data[i * state.floats_per_vertex + (state.floats_per_vertex - 2)] = 255;
             state.vertex_data[i * state.floats_per_vertex + (state.floats_per_vertex - 1)] = 255;
+        }
+        else {
+            state.vertex_data[i * state.floats_per_vertex + (state.floats_per_vertex - 3)] = 0;
+            state.vertex_data[i * state.floats_per_vertex + (state.floats_per_vertex - 2)] = 0;
+            state.vertex_data[i * state.floats_per_vertex + (state.floats_per_vertex - 1)] = 0;
         }
     }
     std::cout<<"TODO: implement rasterization"<<std::endl;
