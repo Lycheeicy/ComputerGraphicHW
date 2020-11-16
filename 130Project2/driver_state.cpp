@@ -114,16 +114,16 @@ void rasterize_triangle(driver_state& state, const data_geometry& v0,
         float alpha = pbc / abc;
         float beta = pac / abc;
         float gama = pab / abc;
-        if (alpha >= 0 && beta >= 0 && gama >= 0) {
-            state.vertex_data[i * state.floats_per_vertex + (state.floats_per_vertex - 3)] = 255;
-            state.vertex_data[i * state.floats_per_vertex + (state.floats_per_vertex - 2)] = 255;
-            state.vertex_data[i * state.floats_per_vertex + (state.floats_per_vertex - 1)] = 255;
-        }
-        else {
-            state.vertex_data[i * state.floats_per_vertex + (state.floats_per_vertex - 3)] = 0;
-            state.vertex_data[i * state.floats_per_vertex + (state.floats_per_vertex - 2)] = 0;
-            state.vertex_data[i * state.floats_per_vertex + (state.floats_per_vertex - 1)] = 0;
-        }
+        //if (alpha >= 0 && beta >= 0 && gama >= 0) {
+        //    state.vertex_data[i * state.floats_per_vertex + (state.floats_per_vertex - 3)] = 255;
+        //    state.vertex_data[i * state.floats_per_vertex + (state.floats_per_vertex - 2)] = 255;
+        //    state.vertex_data[i * state.floats_per_vertex + (state.floats_per_vertex - 1)] = 255;
+        //}
+        //else {
+        //    state.vertex_data[i * state.floats_per_vertex + (state.floats_per_vertex - 3)] = 0;
+        //    state.vertex_data[i * state.floats_per_vertex + (state.floats_per_vertex - 2)] = 0;
+        //    state.vertex_data[i * state.floats_per_vertex + (state.floats_per_vertex - 1)] = 0;
+        //}
     }
     std::cout<<"TODO: implement rasterization"<<std::endl;
     std::cout << "leave rasterize_triangle" << std::endl;
